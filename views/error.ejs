@@ -6,8 +6,11 @@
     <title>Error</title>
 </head>
 <body>
-    <p>You landed on an error page</p>
-    <p><%= message %></p>
-    <p><%= truc %></p>
+    <h1>Error</h1>
+
+    <h2><%= status %> <%= message %></h2>
+    <% if (status == 404) { %>
+        <p>It seems you lost your way...</p>
+    <% } %> 
 </body>
 </html>
