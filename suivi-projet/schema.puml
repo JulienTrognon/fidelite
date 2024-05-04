@@ -1,0 +1,98 @@
+@startuml schema
+
+hide empty members
+hide circles
+hide <<abstract>> stereotype
+hide <<entity>> stereotype
+hide <<relationship>> stereotype
+
+<style>
+  classDiagram {
+    LineColor #404040
+    class {
+      .abstract {
+        LineColor #4f63b3
+        LineStyle 2
+        FontColor #4f63b3
+        BackgroundColor aliceblue
+        header {
+          FontStyle italic
+        }
+      }
+      .relationship {
+        BackgroundColor #c3fae0
+        LineColor #466b5a
+        FontColor #466b5a
+        header {
+          FontStyle bold
+        }
+      }
+    }
+  }
+</style>
+
+' Utilisateurs
+class Utilisateur <<abstract>> {
+    id
+    email
+    mdp
+    pseudo
+    nom
+    prenom
+}
+
+class Gerant
+
+class Client {
+    date_inscription
+    points
+    naissance
+}
+
+
+diamond diamondUtilisateur
+
+Utilisateur <|-- "total" diamondUtilisateur
+diamondUtilisateur -left- Gerant
+diamondUtilisateur -right- Client
+
+
+' Cadeaux
+class Cadeau {
+    id
+    nom
+    description
+    prix
+    stock
+}
+
+
+' Panier
+class Panier {
+    id
+}
+
+
+' Commande
+class Commande {
+    date
+}
+
+
+Panier <|-- Commande
+
+Client *- "1" Panier
+
+class Contenu <<relationship>>
+
+Panier *- Contenu
+Contenu - "0..n" Cadeau
+
+class Historique <<relationship>>
+
+Client *-- Historique
+Historique - "0..n" Commande
+
+
+
+@enduml
