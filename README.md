@@ -25,13 +25,14 @@ Le jour d'anniversaire d'un client lui donne des réductions sur des offres.
 Tester le site web en local requiert les outils suivants :
 - navigateur web
 - Node.js
+- PostgreSQL
 
-Placez vous dans le dossier racine du site (celui qui contient README.md).
+Sur un terminal, se placer dans le répertoire racine du site (celui qui contient ce `README.md`).
 
-Sur un terminal, avec Node.js installé, taper la commande suivante :
+Avec Node.js et PostgreSQL installé, taper la commande suivante :
 
 ```sh
-npm install cookie-parser debug ejs express http-errors mocha morgan pg supertest
+./init.sh
 ```
 
 Ensuite, pour lancer le serveur local :
