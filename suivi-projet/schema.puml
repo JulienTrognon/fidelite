@@ -1,5 +1,7 @@
 @startuml schema
 
+skinparam linetype ortho
+left to right direction
 hide empty members
 hide circles
 hide <<abstract>> stereotype
@@ -31,67 +33,60 @@ hide <<relationship>> stereotype
   }
 </style>
 
+title Schéma E/R de la base de données
+footer 2024 — Ibrahime CAMARA & Julien TROGNON
+
+
 ' Utilisateurs
 class Utilisateur <<abstract>> {
-    id
-    email
-    mdp
-    pseudo
-    nom
-    prenom
+  <b>id
+  email
+  mdp
+  pseudo
+  nom
+  prenom
 }
 
 class Gerant
 
 class Client {
-    date_inscription
-    points
-    naissance
+  date_inscription
+  points
+  naissance
 }
 
 
 diamond diamondUtilisateur
 
-Utilisateur <|-- "total" diamondUtilisateur
-diamondUtilisateur -left- Gerant
-diamondUtilisateur -right- Client
+Utilisateur <|-right- "total" diamondUtilisateur
+diamondUtilisateur -up- Gerant
+diamondUtilisateur -down- Client
 
 
 ' Cadeaux
 class Cadeau {
-    id
-    nom
-    description
-    prix
-    stock
+  <b>id
+  nom
+  description
+  prix
+  stock
 }
 
 
 ' Panier
 class Panier {
-    id
+  <b>id
+  date_archive
 }
 
+Client *-- "1" Panier
+Client "1" --* Panier
 
-' Commande
-class Commande {
-    date
-}
-
-
-Panier <|-- Commande
-
-Client *- "1" Panier
 
 class Contenu <<relationship>>
 
-Panier *- Contenu
+Panier *-- Contenu
 Contenu - "0..n" Cadeau
-
-class Historique <<relationship>>
-
-Client *-- Historique
-Historique - "0..n" Commande
 
 
 
