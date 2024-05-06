@@ -17,7 +17,7 @@ async function verifieUtilisateur(table, pseudo, mot_de_passe) { // fonction asy
     try {
         let mdp_hash = await bcrypt.hash(mot_de_passe, 10); // cryptage du mot de passe
         const result = await db.query('SELECT * FROM $1 WHERE pseudo = $2 AND mot_de_passe = $3',[table,pseudo, mdp_hash]); // requête SQL
-        return result.rows.length > 0 ? true : false; // si l'utilisateur existe, on retourne true, sinon false
+        return result.rows.length > 0; // si l'utilisateur existe, on retourne true, sinon false
     }
     catch (err) { // si erreur
         console.error(err); // affichage de l'erreur
