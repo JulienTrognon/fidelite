@@ -36,10 +36,15 @@ Avec Node.js et PostgreSQL installé, taper la commande suivante :
 ```
 
 Ensuite, pour lancer le serveur local :
+- avec un live server (affiche les changements dans le navigateur sans avoir à relancer le serveur) :
+    ```sh
+    npm start
+    ```
 
-```sh
-npm start
-```
+- avec un serveur statique (node basique) :
+    ```sh
+    npm startstatic
+    ```
 
 Enfin sur votre navigateur web, taper l'URL suivante :
 
