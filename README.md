@@ -27,6 +27,8 @@ Tester le site web en local requiert les outils suivants :
 - Node.js
 - PostgreSQL
 
+Pour permettre la connexion à la base de données, il faut editer `.env` avec votre nom d'utilisateur et votre mot de passe.
+
 Sur un terminal, se placer dans le répertoire racine du site (celui qui contient ce `README.md`).
 
 Avec Node.js et PostgreSQL installé, taper la commande suivante :
