@@ -1,3 +1,11 @@
 label, input, button, select, textarea {
   display: block;
 }
+
+button {
+  text-transform: uppercase;
+}
+
+label {
+  cursor: text;
+}
