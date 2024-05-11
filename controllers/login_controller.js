@@ -7,20 +7,10 @@ const login_controller = {
   },
 
   login_post: async (req, res) => {
+    console.log("login_post");
     const { email, mdp } = req.body;
 
-    if (!email || !mdp) {
-      res.status(401).send("Missing email or password");
-      console.log("Missing email or password");
-      return;
-    }
-
-    if (typeof email !== 'string' || typeof mdp !== 'string') {
-      res.status(401).send("email or password not a string");
-      console.log("email or password not a string");
-    }
-
-    console.log(email, mdp);
+    let errmessage = "";
     
     let response = await query('SELECT mdp FROM client WHERE email = $1', [email]);
 
@@ -31,7 +21,9 @@ const login_controller = {
     
         // pas de gerant ? message d'erreur
         if (response.rows.length === 0) {
-          res.status(401).send("Aucun compte n'existe pour cet email.");
+          errmessage = "Aucun compte n'existe pour cet email.";
+          console.log(errmessage);
+          res.render("login", { title: 'Connexion', errmessage });
           return;
         }
       }
@@ -47,10 +39,13 @@ const login_controller = {
       const match = await bcrypt.compare(mdp, user.mdp);
 
       if (match) {
+        console.log("Utilisateur : Connexion reussie");
         res.redirect('/');
         return;
       } else {
-        res.status(401).send("Email ou mot de passe incorrect");
+        errmessage = "Email ou mot de passe incorrect.";
+        console.log(errmessage);
+        res.render("login", { title: 'Connexion', errmessage });
         return;
       }
     } catch (err) {
