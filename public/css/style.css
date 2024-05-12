@@ -9,3 +9,7 @@ button {
 label {
   cursor: text;
 }
+
+a {
+  text-decoration: none;
+}

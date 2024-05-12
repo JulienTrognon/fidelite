@@ -1,7 +1,11 @@
 const { query } = require('../db/connect');
+const { delete_session } = require('../middleware/session');
 
 function pas_de_session(req, res) {
   console.log("pas de session en cours, redirection vers /login");
+  if (req.cookies?.['session_id']) {
+    delete_session(req, res, req.cookies['session_id']);
+  }
   res.redirect('login');
 }
 

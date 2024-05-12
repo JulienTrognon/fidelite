@@ -9,6 +9,7 @@ const { run_scheduler } = require('./middleware/scheduler');
 // routes
 const index_router = require('./routes/index');
 const login_router = require('./routes/login');
+const logout_router = require('./routes/logout');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cookie_parser());
 
 app.use('/', index_router);
 app.use(login_router);
+app.use(logout_router);
 
 run_scheduler();
 
