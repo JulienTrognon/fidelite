@@ -29,11 +29,22 @@ CREATE TABLE client (
   CHECK (points >= 0)
 );
 
+CREATE TABLE session (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  user_type VARCHAR(6) NOT NULL,
+  debut TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  fin TIMESTAMP WITH TIME ZONE NOT NULL,
+  data JSONB DEFAULT '{}',
+
+  CHECK (user_type IN ('client', 'gerant'))
+);
+
 CREATE TABLE panier (
   id SERIAL NOT NULL PRIMARY KEY,
   id_client INTEGER NOT NULL,
   date_archive DATE,
-  etat TEXT NOT NULL DEFAULT 'en cours',
+  etat VARCHAR(8) NOT NULL DEFAULT 'en cours',
 
   CHECK (etat IN ('en cours', 'archive')),
 
