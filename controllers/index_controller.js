@@ -1,5 +1,6 @@
 const { query } = require('../db/connect');
 const { delete_session } = require('../middleware/session');
+const gerant = require('../middleware/gerant');
 
 function pas_de_session(req, res) {
   console.log("pas de session en cours, redirection vers /login");
@@ -33,6 +34,16 @@ const index_controller = {
 
     // récup des données de la session
     console.log("Session active :", rows[0].user_id, rows[0].user_type);
+
+    if (rows[0].user_type === 'gerant') {
+      const clients = await gerant.get_liste_clients(req, res, next);
+      res.render('gerant/index', { 
+        title: 'Accueil Gérant',
+        clients: clients,
+      });
+      return;
+    }
+
     res.render('index', { title: 'Accueil' });
   }
 }

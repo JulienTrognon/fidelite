@@ -1,0 +1,38 @@
+<h2>Liste des clients</h2>
+<a href=""><button class="btn btn-primary mb-3">
+  <i class='bx bx-plus'></i>
+</button></a>
+<ul>
+  <% clients.forEach(client => { %>
+    <li class="d-flex justify-content-center mb-1">
+      <span class="container">
+        <a class="d-inline" href="/user/<%= client.id %>">
+          <%= client.nom %>
+        </a>
+      </span>
+      <span class="container">
+        <a class="d-inline" href="/user/<%= client.id %>">
+          <%= client.prenom %>
+        </a>
+      </span>
+      <span class="container">
+        <a class="d-inline" href="/user/<%= client.id %>">
+          <%= client.pseudo %>
+        </a>
+      </span>
+      <span class="container">
+        <a class="d-inline" href="/user/<%= client.id %>">
+          <%= client.email %>
+        </a>
+      </span>
+      <span class="container">
+        <a href=""><button class="btn btn-primary">
+          <i class='bx bxs-edit'></i>
+        </button></a>
+        <a href=""><button class="btn btn-primary">
+          <i class='bx bxs-trash'></i>
+        </button></a>
+      </span>
+    </li>
+  <% }) %>
+</ul>
