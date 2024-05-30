@@ -65,3 +65,7 @@ typings/
 
 # sujet du projet
 sujet.pdf
+
+# package.json
+package.json
+package-lock.json
